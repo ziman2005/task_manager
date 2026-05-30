@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="authView" class="card auth-card">
+      <h1>Task Manager</h1>
+      <p class="muted">Frontend + FastAPI SQLite backend</p>
+
+      <div class="tabs">
+        <button id="loginTab" class="tab active" type="button">Вход</button>
+        <button id="registerTab" class="tab" type="button">Регистрация</button>
+      </div>
+
+      <form id="loginForm" class="form">
+        <label>
+          Email
+          <input id="loginEmail" type="email" placeholder="you@example.com" required />
+        </label>
+
+        <label>
+          Пароль
+          <input id="loginPassword" type="password" placeholder="Минимум 8 символов" required />
+        </label>
+
+        <button type="submit">Войти</button>
+      </form>
+
+      <form id="registerForm" class="form hidden">
+        <label>
+          Имя пользователя
+          <input id="registerUsername" type="text" placeholder="Boris" />
+        </label>
+
+        <label>
+          Email
+          <input id="registerEmail" type="email" placeholder="you@example.com" required />
+        </label>
+
+        <label>
+          Пароль
+          <input id="registerPassword" type="password" placeholder="Минимум 8 символов" minlength="8" required />
+        </label>
+
+        <button type="submit">Создать аккаунт</button>
+      </form>
+
+      <p id="authMessage" class="message"></p>
+    </section>
+
+    <section id="tasksView" class="tasks-layout hidden">
+      <header class="topbar">
+        <div>
+          <h1>Мои задачи</h1>
+          <p id="helloText" class="muted"></p>
+        </div>
+
+        <button id="logoutButton" class="secondary-button" type="button">Выйти</button>
+      </header>
+
+      <section class="card">
+        <form id="taskForm" class="task-form">
+          <input id="taskTitle" type="text" placeholder="Название задачи" minlength="3" maxlength="100" required />
+
+          <div>
+            <p class="field-title">Метки</p>
+            <div id="createLabels" class="labels-grid"></div>
+          </div>
+
+          <button type="submit">Добавить задачу</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <h2>Список</h2>
+
+          <div class="filters">
+            <input id="searchInput" type="search" placeholder="Поиск" />
+            <select id="labelFilter">
+              <option value="">Все метки</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="tasksList" class="tasks-list"></div>
+
+        <p id="emptyText" class="empty hidden">Пока задач нет</p>
+        <p id="tasksMessage" class="message"></p>
+      </section>
+    </section>
+  </main>
+
+  <template id="taskTemplate">
+    <article class="task-item">
+      <div class="task-main">
+        <input class="task-edit-input" type="text" minlength="3" maxlength="100" />
+        <div class="task-labels"></div>
+      </div>
+
+      <div class="task-actions">
+        <button class="save-button" type="button">Сохранить</button>
+        <button class="delete-button danger-button" type="button">Удалить</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
